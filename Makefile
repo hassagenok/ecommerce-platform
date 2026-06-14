@@ -5,14 +5,14 @@
 help:
 	@echo "make help    Show available commands"
 	@echo "make status  Show short repository status"
-	@echo "make log     Show recent history"
+	@echo "make history     Show recent history"
 	@echo "make diff    Show whitespace errors and diff summary"
 	@echo "make check   Run basic Git checks"
 
 status:
 	git status --short
 
-log:
+history:
 	git log --oneline --decorate -5
 
 diff:
