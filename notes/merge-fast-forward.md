@@ -1,11 +1,15 @@
-* b016d7d (HEAD -> main, origin/main, origin/HEAD) refactor: remove subprocess in favor of dbus and wire up to javascript (#606)
-* 44dfa51 refactor: load scene-script builtins from a generated header (#608)
-* ce06c02 refactor: read puppet mesh data via BinaryReader/MemoryStream (#604)
-* ab76bc0 fix: mute video wallpapers when --silent is used (#605)
-* 100b664 chore: cleanup and optimization of scripting engine + anonymous namespace methods (#599)
-* f38303d refactor: make CImage::resolveTransform iterative and reuse computed transform (#602)
-* 8a00ff7 Improve text rendering compatibility (5/5) (#571)
-* a1efb83 Add media thumbnail texture fallback (#570)
+* 2828d7d (HEAD -> homework-v3-03-03-merge-fast-forward, origin/homework-v3-03-03-merge-fast-forward) docs: add logs and explain merge
+*   725228a Merge branch 'practice/merge-source' into homework-v3-03-03-merge-fast-forward
+|\  
+| * b1f60b7 (practice/merge-source) file: add practice merge source txt
+* | 8f54577 file: add practice merge target txt
+|/  
+* 1656f61 (practice/ff-source) file: add practice ff source txt
+* a8e8176 (origin/homework-v3-03-02-feature-branches-naming, homework-v3-03-02-feature-branches-naming) docs: explain feature branch naming
+*   14175ab (origin/main, origin/HEAD, main) Merge pull request #4 from hassagenok/homework-v3-02-05-history-for-review
+|\  
+| * 0d119f9 (origin/homework-v3-02-05-history-for-review) docs: add readable history checklish
+
 
 # Почему первый merge был fast-forward, а второй создал merge comit:
 Первый merge был fast-forward так как после отвлетления не было никаких изменений в ветке homework. Поэтому Git попросту сдвинул point ветки вперёд.
