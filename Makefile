@@ -1,4 +1,4 @@
-.DEFAULT_GOAL :x= help
+.DEFAULT_GOAL := help
 
 .PHONY: help status log diff check
 

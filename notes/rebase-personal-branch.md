@@ -1,52 +1,24 @@
-# rebase and fast-forward:
-14b8546 commit: feat: add practice/rebase-topic.txt
-210e302 (practice/rebase-base) rebase (start)
-c93e987 rebase (pick): feat: add practice/rebase-topic.txt
-c93e987 rebase (finish)
-c93e987 merge practice/rebase-topic: Fast-forward
-
-Мы видим что 14b8546 commit был переписан и теперь новый хэг выглядит так: c93e987
-Стадии rebase: start, pick, finish
-Git зафиксировал fast-forward
-
 # logs:
-* 14b8546 (HEAD -> practice/rebase-topic) feat: add practice/rebase-topic.txt
-| * 210e302 (practice/rebase-base) feat: add practice/rebase-base.txt
+* 125c6fa (HEAD -> practice/rebase-topic) feat: add practice/rebase-topic.txt
+| * 8c734ab (practice/rebase-base) feat: add practice/rebase-base.txt
 |/  
-*   851a027 (origin/main, origin/HEAD, main) Merge pull request #7 from hassagenok/homework-v3-03-03-merge-fast-forward
-|\  
-| * 8d81dff (origin/homework-v3-03-03-merge-fast-forward, homework-v3-03-03-merge-fast-forward) fix: correct logs in file
-| * 2828d7d docs: add logs and explain merge
-| *   725228a Merge branch 'practice/merge-source' into homework-v3-03-03-merge-fast-forward
-| |\  
-| | * b1f60b7 (practice/merge-source) file: add practice merge source txt
-| * | 8f54577 file: add practice merge target txt
-| |/  
-| * 1656f61 (practice/ff-source) file: add practice ff source txt
-* | 4cd355e Merge pull request #6 from hassagenok/homework-v3-03-02-feature-branches-naming
-|\| 
 
-# SHA topic commit:
-14b8546
+# SHA:
+rebase-topic: 125c6fa
+rebase-base: 8c734ab
 
 # new graph:
-* c93e987 (HEAD -> practice/rebase-topic) feat: add practice/rebase-topic.txt
-* 210e302 (practice/rebase-base) feat: add practice/rebase-base.txt
-*   851a027 (origin/main, origin/HEAD, main) Merge pull request #7 from hassagenok/homework-v3-03-03-merge-fast-forward
-|\  
-| * 8d81dff (origin/homework-v3-03-03-merge-fast-forward, homework-v3-03-03-merge-fast-forward) fix: correct logs in file
-| * 2828d7d docs: add logs and explain merge
-| *   725228a Merge branch 'practice/merge-source' into homework-v3-03-03-merge-fast-forward
-| |\  
-| | * b1f60b7 (practice/merge-source) file: add practice merge source txt
-| * | 8f54577 file: add practice merge target txt
-| |/  
-| * 1656f61 (practice/ff-source) file: add practice ff source txt
-* | 4cd355e Merge pull request #6 from hassagenok/homework-v3-03-02-feature-branches-naming
-|\| 
+* 10bc32c (HEAD -> practice/rebase-topic) feat: add practice/rebase-topic.txt
+* 8c734ab (practice/rebase-base) feat: add practice/rebase-base.txt
 
-# new SHA topic commit:
-c93e987
+# new SHA :
+rebase-topic: 10bc32c
+rebase-base: 8c734ab
+
+# logs after fast-forward commit:
+* 10bc32c (HEAD -> homework-v3-03-04-rebase-personal-branch, practice/rebase-topic) feat: add practice/rebase-topic.txt
+* 8c734ab (practice/rebase-base) feat: add practice/rebase-base.txt
+* 813be5e (origin/main, origin/HEAD, main) docs: add proof rebase and fast-forward notes
 
 # Почему topic commit после rebase новый hash:
 rebase создало новый коммит поверх нового родителя. Так как родитель входит в метаданные commit, после смены родителя commit получил новый hash.
