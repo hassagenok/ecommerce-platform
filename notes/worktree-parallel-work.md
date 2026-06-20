@@ -31,11 +31,11 @@ clone - отдельный репозиторий
 feature branch после локальной проверки идёт в review, но никак не идёт напрямую в protected main.
 
 # checklist состояния каждой рабочей папки:
-pwd
-git worktree list
-git branch --show-current
-git status --short
-make check
+pwd - показывает физическую папку
+git worktree list - показывает карту связанных checkouts
+git branch --show-current - показывает активную ветку в текущей папке
+git status --short - показывает рабочее состояние папки
+make check - запускает договор проекта в этом контексте
 
 # Локальные проверки до commit:
 git status --short
@@ -45,7 +45,7 @@ git diff --staged
 make history
 make check
 
-# Локальные проверки после commit: 
+# Локальные проверки после commit:
 make check
 git status --short
 git branch --show-current
