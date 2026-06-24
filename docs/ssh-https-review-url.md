@@ -1,5 +1,5 @@
 # SSH URL для работы:
-git@github.com:hassagenok/ecommerce-platform.git
+origin	git@github.com:hassagenok/ecommerce-platform.git (fetch)
 
 # HTTPS URL для Tyfoon review:
 https://github.com/hassagenok/ecommerce-platform.git
@@ -25,13 +25,26 @@ origin  git@github.com:hassagenok/ecommerce-platform.git (push)
 > $ ssh -T git@github.com                                                                                                                      [±homework-v3-04-03-ssh-remote-https-review ●]
 Hi hassagenok! You've successfully authenticated, but GitHub does not provide shell access.
 
-# Authentication error
+# Пример ошибки Permission denied (publickey):
 `Permission denied (publickey)` — SSH authentication failed because no valid SSH key was found or configured for the repository access.
-# Configuration error
-`wrong URL` — repository remote URL is incorrect or points to a non-existent/unauthorized repository.
 
-# Ошибки подключения.
-Обе ошибки относятся к уровню подключения, поэтому изменения branch name или force push не применяются, так как Git ещё не выполняет операции с ветками или историей коммитов.
+# Диагностика ошибок:
+Если ошибка `Permission denied (publickey)`:
+1. Проверяем SSH ключ
+2. Есть ли ключ локально (ls -al ~/.ssh)
+3. Добавлен ли ключ к GitHub
+4. Загружен ли ключ в ssh-agent (ssh-add -l)
+
+Если remote неправильный:
+1. Проверяем git remote -v
+2. SSH/HTTPS формат
+3. Существует ли репозиторий
+
+Если URL верный, но доступа нет:
+1. Проверяем доступ
+2. Проверяем права
+
+Эти ошибки не связаны с ветками или историей коммитов, поэтому branch rename и force push не применяются.
 
 # Local checks:
 make check
