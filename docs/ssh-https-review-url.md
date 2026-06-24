@@ -1,15 +1,15 @@
 # SSH URL для работы:
 git@github.com:hassagenok/ecommerce-platform.git
+
 # HTTPS URL для Tyfoon review:
 https://github.com/hassagenok/ecommerce-platform.git
 
 # Один репозиторий, но разный формат URL:
-Для работы мы используем SSH URL, так как он удобен для authenticated Git operations (fetch, pull, push) и используется для работы с репозиторием и внесением изменений. Главное, что он безопасный, ведь при подключении по SSH Git сервер проверяет, что пользователь владеет private key, не передавая сам ключ по сети.
-
-Для проверки мы отправляем HTTPS URL, в контексте Tyfoon — он используется как read-only reference. HTTPS удобен для Tyfoon и браузера и для просмотра и ревью кода без необходимости предоставлять доступ на запись.
+SSH используется как способ аутентификации и безопасного выполнения Git-операций (fetch, pull, push).
+HTTPS используется для доступа к репозиторию в режиме просмотра и ревью (Tyfoon/browser). Также может использоваться Git-клиентом, но чаще применяется без SSH-ключей, через токены или публичный доступ.
 
 # private SSH key:
-Важно, не вставлять в документы, чаты, issue, PR, review, Tyfoon свой приватный SSH key, потому что любой, у кого есть этот ключ, сможет выдавать себя за владельца ключа и получать доступ к ресурсам, где этот ключ используется для аутентификации.
+Важно: приватный SSH key нельзя передавать в документы, чаты, issue, PR или review, так как он даёт полный доступ к аккаунту и всем связанным репозиториям.
 
 # check example:
 git remote -v
@@ -25,11 +25,13 @@ origin  git@github.com:hassagenok/ecommerce-platform.git (push)
 > $ ssh -T git@github.com                                                                                                                      [±homework-v3-04-03-ssh-remote-https-review ●]
 Hi hassagenok! You've successfully authenticated, but GitHub does not provide shell access.
 
-# короткий error report Permission denied (publickey):
+# Authentication error
 `Permission denied (publickey)` — SSH authentication failed because no valid SSH key was found or configured for the repository access.
+# Configuration error
+`wrong URL` — repository remote URL is incorrect or points to a non-existent/unauthorized repository.
 
-# wrong URL, permission denied:
-При wrong URL или Permission denied (publickey) сначала нужно проверить remote URL и SSH-доступ. Так как это ошибки с подключением, нет смысла менять branch name или делать force push. Git даже не дошёл до операций с ветками или коммитами — проблема на уровне подключения
+# Ошибки подключения.
+Обе ошибки относятся к уровню подключения, поэтому изменения branch name или force push не применяются, так как Git ещё не выполняет операции с ветками или историей коммитов.
 
 # Local checks:
 make check
