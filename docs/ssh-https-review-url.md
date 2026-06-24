@@ -1,5 +1,6 @@
 # SSH URL для работы:
-origin	git@github.com:hassagenok/ecommerce-platform.git (fetch)
+Проверяем подключение: ssh -T git@github.com - Hi hassagenok! You've successfully authenticated, but GitHub does not provide shell access.
+SSH URL: origin	git@github.com:hassagenok/ecommerce-platform.git (fetch)
 
 # HTTPS URL для Tyfoon review:
 https://github.com/hassagenok/ecommerce-platform.git
@@ -29,22 +30,24 @@ Hi hassagenok! You've successfully authenticated, but GitHub does not provide sh
 `Permission denied (publickey)` — SSH authentication failed because no valid SSH key was found or configured for the repository access.
 
 # Диагностика ошибок:
-Если ошибка `Permission denied (publickey)`:
-1. Проверяем SSH ключ
-2. Есть ли ключ локально (ls -al ~/.ssh)
-3. Добавлен ли ключ к GitHub
-4. Загружен ли ключ в ssh-agent (ssh-add -l)
 
-Если remote неправильный:
-1. Проверяем git remote -v
-2. SSH/HTTPS формат
-3. Существует ли репозиторий
+repository not found чаще говорит про wrong URL или права на конкретный repository.
+Проводим диагностику:
+1. Проверяем URL репозитория: git remote -v
+2. Проверяем, существует ли репозиторий: https://github.com/<user>/<repo> (Если выдаёт ошибку - репозиторий не существует, либо нет доступа)
+3. Проверяем доступ SSH: ssh -T git@github.com (Если все хорошо, будет вывод: Hi username! You've successfully authenticated). Если нет, то ключ не добавлен или не тот аккаунт. Тут же можно и узнать под каким аккаунтом вы работаете на данный момент.
 
-Если URL верный, но доступа нет:
-1. Проверяем доступ
-2. Проверяем права
+remote: Permission to owner/repo denied означает, что GitHub узнал account, но не разрешил запись в этот repository.
+Проводим диагностику: 
+1. Проверяем аккаунт: ssh -T git@github.com (Hi, username!)
+2. Проверяем доступ к репозиторию на странице репозитория: https://github.com/owner/repo (смотрим список collaborators, есть ли права на редактирование)
 
-Эти ошибки не связаны с ветками или историей коммитов, поэтому branch rename и force push не применяются.
+protected branch hook declined или похожий текст означает, что SSH доступ есть, но branch policy запрещает прямое обновление ref.
+Проводим диагностику:
+1. Проверяем в какую ветку мы пушим (git branch, git status, git push origin main)
+2. Проверяем branch protection rules: GitHub → repo → Settings → Branches (Тут смотрим protected branches)
+
+Эти ошибки не связаны с ветками или историей коммитов, поэтому branch rename и force push не применяются. Неправильная реакция на SSH ошибку: менять branch name, делать force push, удалять origin, вставлять private key в комментарий или переходить на случайный HTTPS URL без понимания token/auth. Правильная реакция: проверить git remote -v, проверить ssh -T git@github.com, убедиться, что public key добавлен в правильный account, и отделить проблему аутентификации от проблемы permissions и protected branch.
 
 # Local checks:
 make check
