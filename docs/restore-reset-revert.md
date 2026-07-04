@@ -1,3 +1,6 @@
+# Rules:
+Запрещено использовать git push --force в опубликованные ветки
+
 # Перед откатом нужно проверить:
 git status --short - показывает, какие файлы изменены и staged ли они.
 git diff - показывает unstaged изменения.
@@ -34,14 +37,7 @@ reset --hard это полное удаление изменения из workin
 5. make check - показывает изменения status, проверяет ошибки форматирования.
 
 # make check:
-> $ make check
-git status --short
-M  Makefile
-A  docs/restore-reset-revert.md
-git diff --check
 
-Мы видим что после make check - Makefile был редактирован и добавлен в staging и появился новый файл который тоже находиться в staging.
-А git diff --check показывает пустой вывод, значит что нет проблем с форматированием и diff не обнаружил нарушений.
 
 # local checks:
 Перед коммитом выполняем проверку:
