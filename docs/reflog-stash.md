@@ -25,6 +25,7 @@ git diff --check показал пустое состояние (значит н
 git status short показал что файл docs/reflog-stash.md подготовлен к коммиту (A  docs/reflog-stash.md)
 
 Провёл проверку make check после commit:
+git diff --check и git status short пустые, значит нет никаких файлов в work tree.
 
 # local checks:
 make check
