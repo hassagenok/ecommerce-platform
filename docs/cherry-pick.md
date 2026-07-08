@@ -2,14 +2,15 @@
 source branch - practice/cherry-source
 target branch - homework-v3-06-04-cherry-pick
 
-Source SHA:
-538da08 (practice/cherry-source) docs: add small fix in txt file
+Source commit:
+SHA: 538da081ecd1d8a104d65cd1d032282571bdaff7
+Commit message: docs: add small fix in txt file
 
-New SHA after cherry-pick:
-46e2aff (HEAD -> homework-v3-06-04-cherry-pick) docs: add small fix in txt file
-
-docs: add small fix in txt file
-(cherry picked from commit 538da081ecd1d8a104d65cd1d032282571bdaff7)
+New commit after cherry-pick:
+SHA: 46e2affe72d0e2e993065db2a64b9546841f3911
+Commit message: docs: add small fix in txt file
+The commit was created using: git cherry-pick -x practice/cherry-source
+Новый коммит содержит сообщение благодаря флагу -x: (cherry picked from commit 538da081ecd1d8a104d65cd1d032282571bdaff7)
 
 # when cherry-picking is appropriate:
 Мы применяем cherry-pick в случае, когда нам нужно перенести один или несколько коммитов из одной ветки в другую.
