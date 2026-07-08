@@ -3,11 +3,11 @@ source branch - practice/cherry-source
 target branch - homework-v3-06-04-cherry-pick
 
 Source commit:
-SHA: 538da081ecd1d8a104d65cd1d032282571bdaff7
+SHA: 538da08
 Commit message: docs: add small fix in txt file
 
 New commit after cherry-pick:
-SHA: 46e2affe72d0e2e993065db2a64b9546841f3911
+SHA: 46e2aff
 Commit message: docs: add small fix in txt file
 The commit was created using: git cherry-pick -x practice/cherry-source
 Новый коммит содержит сообщение благодаря флагу -x: (cherry picked from commit 538da081ecd1d8a104d65cd1d032282571bdaff7)
