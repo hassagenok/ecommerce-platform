@@ -2,7 +2,7 @@
 
 - Branch - это git ref на определённый коммит в истории. Ветка (branch) показывает отдельную линию разработки и перемещается вперёд при добавлении новых commit.
 - Pipeline - это автоматический процесс, который запускается для конкретного commit и выполняет такие действия с кодом: build, tests, проверки качества, create artifact.
-- Artifact - это результат работы pipeline, готовый объект, который можно сохранить и развернуть в environment.
+- Artifact - это результат работы pipeline, готовый объект, который можно сохранить и развернуть в environment. Artifact должен быть неизменяемым, чтобы один и тот же результат можно было продвинуть из staging в production.
 - Environment - это место, где запущен конкретный artifact или commit.
 
 # flow-scheme:
@@ -13,7 +13,7 @@
 1. Review/dev:
 * Environment: review/dev
 * Source: Artifact created from feature branch pipeline
-* Owner: release owner
+* Owner: Developer
 * Checks: CI, smoke check, acceptance notes
 * Approval: Developer decides if changes are ready for merge
 * Rollback note: Redeploy previous working artifact or remove broken review deployment
@@ -21,7 +21,7 @@
 2. Staging:
 * Environment: staging
 * Source: artifact from main pipeline
-* Owner: release owner
+* Owner: Project owner / Release owner
 * Checks: CI, smoke check, acceptance notes
 * Approval: Manual approval before production deployment
 * Rollback note: Redeploy previous stable artifact from staging/production
@@ -29,7 +29,7 @@
 3. Production:
 * Environment: Production
 * Source: artifact that passed staging verification
-* Owner: release owner
+* Owner: Project owner / Release owner
 * Checks: deploy checks, monitoring.
 * Approval: Manual approval before release
 * Rollback note: Roll back to previous production artifact
@@ -37,6 +37,20 @@
 # Deployment gate:
 Deployment gate - это набор проверок, которые должны быть выполнены перед тем, как версия приложения попадёт в следующее окружение.
 Не каждый commit автоматически должен попадать дальше. Перед продвижением версии нужно убедиться, что она стабильна.
+
+Deployment gates before staging:
+* pipeline успешно завершён
+* build проходит
+* tests passed
+* artifact created
+* artifact связан с коммит SHA
+
+Deployment gates before production:
+* staging deployment успешно завершён
+* smoke checks passed
+* acceptance notes completed
+* manual approval
+* artifact используется тот же, который был проверен в staging.
 
 # Environment branch variant:
 Environment branch variant - предполагает использование staging и production branches. Иногда отдельные ветки по типу этих нужны, например:
